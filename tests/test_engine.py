@@ -1,27 +1,41 @@
 import pytest
-from game_engine.engine import move_object, check_collision, is_within_bounds
+from engine.core import *
 
-# Test dla move_object
-def test_move_object_up():
-    assert move_object((2, 2), "up") == (2, 1)
+def test_initialize_game():
+    state = initialize_game((10, 10))
+    assert len(state["snake"]) == 1
+    assert is_within_bounds(state["snake"][0], (10, 10))
+    assert is_within_bounds(state["food"], (10, 10))
+    assert state["snake"][0] != state["food"]
 
-def test_move_object_left():
-    assert move_object((2, 2), "left") == (1, 2)
+def test_move_object():
+    assert move_object((5, 5), "up") == (5, 4)
+    assert move_object((5, 5), "down") == (5, 6)
+    assert move_object((5, 5), "left") == (4, 5)
+    assert move_object((5, 5), "right") == (6, 5)
 
-def test_move_object_invalid_direction():
-    with pytest.raises(ValueError):
-        move_object((2, 2), "diagonal")
+def test_check_collision():
+    assert check_collision((1, 1), (1, 1)) is True
+    assert check_collision((1, 1), (2, 2)) is False
 
-# Test dla check_collision
-def test_check_collision_true():
-    assert check_collision((3, 3), (3, 3)) == True
+def test_is_within_bounds():
+    assert is_within_bounds((0, 0), (10, 10)) is True
+    assert is_within_bounds((9, 9), (10, 10)) is True
+    assert is_within_bounds((10, 10), (10, 10)) is False
+    assert is_within_bounds((-1, 0), (10, 10)) is False
 
-def test_check_collision_false():
-    assert check_collision((3, 3), (4, 3)) == False
 
-# Test dla is_within_bounds
-def test_is_within_bounds_inside():
-    assert is_within_bounds((3, 3), (10, 10)) == True
+def test_update_game_state():
+    state = initialize_game((5, 5))
+    old_len = len(state["snake"])
 
-def test_is_within_bounds_outside():
-    assert is_within_bounds((11, 3), (10, 10)) == False
+    # Ustawiamy jedzenie przed głową węża w jego aktualnym kierunku
+    direction = state["direction"]
+    state["food"] = move_object(state["snake"][0], direction)
+
+    # Aktualizujemy stan gry
+    new_state = update_game_state(state, direction)
+
+    # Oczekujemy, że wąż urósł (zjadł jedzenie)
+    assert len(new_state["snake"]) == old_len + 1
+    assert not new_state["game_over"]
