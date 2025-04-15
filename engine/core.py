@@ -17,9 +17,9 @@ def initialize_game(board_size: Tuple[int, int]) -> dict:
 def move_object(position: Tuple[int, int], direction: str) -> Tuple[int, int]:
     x, y = position
     if direction == "up":
-        return (x, y - 1)
-    elif direction == "down":
         return (x, y + 1)
+    elif direction == "down":
+        return (x, y - 1)
     elif direction == "left":
         return (x - 1, y)
     elif direction == "right":
@@ -50,29 +50,29 @@ def update_game_state(state: dict, direction: str) -> dict:
 
     new_snake_head = move_object(state["snake"][0], direction)
 
-    # Kolizja ze ścianą
+
     if not is_within_bounds(new_snake_head, state["board_size"]):
         state["game_over"] = True
         return state
 
-    # Kolizja z samym sobą
+
     if new_snake_head in state["snake"]:
         state["game_over"] = True
         return state
 
-    # Nowa głowa
+
     state["snake"].insert(0, new_snake_head)
 
-    # Zjedzenie jedzenia
+
     if check_collision(new_snake_head, state["food"]):
         state["food"] = generate_food_position(state["snake"], state["board_size"])
-        # NIE usuwamy ogona — wąż rośnie
+
     else:
-        # Tylko jeśli długość > 1, usuwamy ogon
+
         if len(state["snake"]) > 1:
             state["snake"].pop()
         else:
-            # Jeśli wąż miał tylko 1 segment – nie usuwaj, bo zniknie!
+
             pass
 
     return state
@@ -83,11 +83,11 @@ def render_board(state: dict) -> List[List[str]]:
     for idx, (x, y) in enumerate(state["snake"]):
         if 0 <= x < width and 0 <= y < height:
             board[y][x] = "O" if idx == 0 else "o"
-    # Wstaw jedzenie
+
     fx, fy = state["food"]
     board[fy][fx] = "*"
 
-    # Wstaw węża (głowa = O, reszta = o)
+
     for idx, (x, y) in enumerate(state["snake"]):
         if 0 <= x < width and 0 <= y < height:
             board[y][x] = "O" if idx == 0 else "o"

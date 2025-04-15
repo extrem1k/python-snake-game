@@ -9,8 +9,8 @@ def test_initialize_game():
     assert state["snake"][0] != state["food"]
 
 def test_move_object():
-    assert move_object((5, 5), "up") == (5, 4)
-    assert move_object((5, 5), "down") == (5, 6)
+    assert move_object((5, 5), "up") == (5, 6)
+    assert move_object((5, 5), "down") == (5, 4)
     assert move_object((5, 5), "left") == (4, 5)
     assert move_object((5, 5), "right") == (6, 5)
 
@@ -29,13 +29,13 @@ def test_update_game_state():
     state = initialize_game((5, 5))
     old_len = len(state["snake"])
 
-    # Ustawiamy jedzenie przed głową węża w jego aktualnym kierunku
+
     direction = state["direction"]
     state["food"] = move_object(state["snake"][0], direction)
 
-    # Aktualizujemy stan gry
+
     new_state = update_game_state(state, direction)
 
-    # Oczekujemy, że wąż urósł (zjadł jedzenie)
+
     assert len(new_state["snake"]) == old_len + 1
     assert not new_state["game_over"]
