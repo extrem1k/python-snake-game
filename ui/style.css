@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#game-board-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#game-board {
+    display: grid;
+    border: 2px solid #333;
+    background-color: #eee;
+}
+
+.cell {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ddd;
+}
+
+.snake-head {
+    background-color: #2a9d8f;
+    border-radius: 50%;
+}
+
+.snake-body {
+    background-color: #57cc99;
+}
+
+.food {
+    background-color: #e76f51;
+    border-radius: 50%;
+}
+
+#game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#score-display {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#game-controls {
+    font-size: 14px;
+    color: #666;
+}
+
+.hidden {
+    display: none;
+}
+
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 10;
+}
+
+#game-over h2 {
+    color: #e63946;
+    margin-bottom: 10px;
+}
+
+#final-score {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+#play-again {
+    background-color: #3a86ff;
+}
+
+#play-again:hover {
+    background-color: #2a75e6;
+}

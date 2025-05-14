@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra Snake</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Snake Game</h1>
+
+        <div id="game-setup" class="section">
+            <h2>Ustawienia gry</h2>
+            <div class="form-group">
+                <label for="nickname">Podaj swój nickname:</label>
+                <input type="text" id="nickname" placeholder="Twój nickname">
+            </div>
+            <div class="form-group">
+                <label for="board-width">Szerokość planszy (5-25):</label>
+                <input type="number" id="board-width" min="5" max="25" value="10">
+            </div>
+            <div class="form-group">
+                <label for="board-height">Wysokość planszy (5-25):</label>
+                <input type="number" id="board-height" min="5" max="25" value="10">
+            </div>
+            <button id="start-game">Rozpocznij grę</button>
+        </div>
+
+        <div id="game-board-section" class="section hidden">
+            <h2>Plansza gry</h2>
+            <div id="game-info">
+                <div id="score-display">Wynik: 0</div>
+                <div id="game-controls">
+                    <p>Sterowanie: Strzałki lub WASD</p>
+                </div>
+            </div>
+            <div id="game-board-container">
+                <div id="game-board"></div>
+            </div>
+            <div id="game-over" class="hidden">
+                <h2>KONIEC GRY!</h2>
+                <p id="final-score"></p>
+                <button id="play-again">Zagraj ponownie</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
