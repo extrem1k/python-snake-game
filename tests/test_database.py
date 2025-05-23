@@ -1,15 +1,9 @@
 import pytest
-from database.models import (
-    create_user,
-    get_user,
-    update_user,
-    delete_user,
-    create_score,
-    get_scores_by_user,
-    update_score,
-    delete_score,
-)
 from bson import ObjectId
+
+from database.models import (create_score, create_user, delete_score,
+                             delete_user, get_scores_by_user, get_user,
+                             update_score, update_user)
 
 # ====== TESTY DLA USERS ======
 

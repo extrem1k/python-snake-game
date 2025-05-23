@@ -1,5 +1,6 @@
-from database.db import get_database
 from datetime import datetime
+
+from database.db import get_database
 
 db = get_database()
 

@@ -1,8 +1,10 @@
+import uuid
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from engine.core import initialize_game, update_game_state, render_board
-from database.models import save_score, create_user
-import uuid
+
+from database.models import create_user, save_score
+from engine.core import initialize_game, render_board, update_game_state
 
 app = Flask(__name__)
 CORS(app)  # Włączenie CORS, aby frontend mógł komunikować się z API

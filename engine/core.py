@@ -1,6 +1,6 @@
 # engine/core.py
-from typing import Tuple, List, Dict
 import random
+from typing import Dict, List, Tuple
 
 
 def initialize_game(board_size: Tuple[int, int]) -> dict:

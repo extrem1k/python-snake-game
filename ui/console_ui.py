@@ -1,9 +1,10 @@
-import time
 import os
+import time
+
 import keyboard
 
-from engine.core import initialize_game, update_game_state, render_board
 from database.models import create_user
+from engine.core import initialize_game, render_board, update_game_state
 
 DIRECTION_KEYS = {"w": "up", "s": "down", "a": "left", "d": "right"}
 

@@ -1,8 +1,8 @@
-import sys
 import subprocess
+import sys
 import threading
-import webbrowser
 import time
+import webbrowser
 
 
 def run_api():
