@@ -5,12 +5,7 @@ import keyboard
 from engine.core import initialize_game, update_game_state, render_board
 from database.models import create_user
 
-DIRECTION_KEYS = {
-    'w': 'up',
-    's': 'down',
-    'a': 'left',
-    'd': 'right'
-}
+DIRECTION_KEYS = {"w": "up", "s": "down", "a": "left", "d": "right"}
 
 
 def get_input():
@@ -24,6 +19,7 @@ def print_board(board):
     # Wyświetlanie planszy od najwyższego Y (układ kartezjański)
     for row in reversed(board):
         print(" ".join(row))
+
 
 def get_board_size():
     while True:
@@ -52,7 +48,7 @@ def run_game():
 
     # 🔥 Nowe: przekazujemy rozmiar planszy do gry
     state = initialize_game(board_size)
-    direction = 'right'
+    direction = "right"
 
     # Rejestracja czasu rozpoczęcia gry
     start_time = time.time()
@@ -60,7 +56,7 @@ def run_game():
     last_move_time = time.time()
 
     while not state.get("game_over"):
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system("cls" if os.name == "nt" else "clear")
         board = render_board(state)
         print_board(board)
         print("Sterowanie: W (góra), A (lewo), S (dół), D (prawo)")
@@ -68,12 +64,7 @@ def run_game():
         new_direction = get_input()
         if new_direction:
             # Zapobiegamy natychmiastowej zmianie na przeciwny kierunek
-            opposite = {
-                'up': 'down',
-                'down': 'up',
-                'left': 'right',
-                'right': 'left'
-            }
+            opposite = {"up": "down", "down": "up", "left": "right", "right": "left"}
             if new_direction != opposite[direction]:
                 direction = new_direction
 
@@ -91,12 +82,14 @@ def run_game():
     # Przykładowe obliczenie wyniku: długość węża minus 1 (na podstawie logiki gry)
     final_score = len(state["snake"]) - 1
     from database.models import save_score
-    save_score(user_id, state["board_size"], final_score,nickname)
+
+    save_score(user_id, state["board_size"], final_score, nickname)
 
     print("Gra zakończona!")
     print("Wynik gry:", final_score)
     print("Czas gry: {:.2f} sekund".format(play_time))
     print("Wynik zapisany w bazie danych.")
+
 
 if __name__ == "__main__":
     run_game()

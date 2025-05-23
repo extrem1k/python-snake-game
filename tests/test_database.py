@@ -1,11 +1,18 @@
 import pytest
 from database.models import (
-    create_user, get_user, update_user, delete_user,
-    create_score, get_scores_by_user, update_score, delete_score
+    create_user,
+    get_user,
+    update_user,
+    delete_user,
+    create_score,
+    get_scores_by_user,
+    update_score,
+    delete_score,
 )
 from bson import ObjectId
 
 # ====== TESTY DLA USERS ======
+
 
 def test_user_crud():
     # CREATE
@@ -35,6 +42,7 @@ def test_user_crud():
 
 
 # ====== TESTY DLA SCORES ======
+
 
 def test_score_crud():
     # Najpierw utwórz użytkownika, do którego przypiszemy score

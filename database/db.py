@@ -4,6 +4,7 @@ from pymongo import MongoClient
 
 load_dotenv()
 
+
 def get_database():
     """
     Łączy się z bazą danych MongoDB.

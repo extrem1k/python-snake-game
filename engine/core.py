@@ -2,6 +2,7 @@
 from typing import Tuple, List, Dict
 import random
 
+
 def initialize_game(board_size: Tuple[int, int]) -> dict:
     width, height = board_size
     initial_position = (width // 2, height // 2)
@@ -11,8 +12,9 @@ def initialize_game(board_size: Tuple[int, int]) -> dict:
         "snake": [initial_position],  # lista pozycji od głowy do ogona
         "direction": "up",
         "food": food_position,
-        "game_over": False
+        "game_over": False,
     }
+
 
 def move_object(position: Tuple[int, int], direction: str) -> Tuple[int, int]:
     x, y = position
@@ -27,21 +29,26 @@ def move_object(position: Tuple[int, int], direction: str) -> Tuple[int, int]:
     else:
         raise ValueError("Invalid direction")
 
+
 def check_collision(pos1: Tuple[int, int], pos2: Tuple[int, int]) -> bool:
     return pos1 == pos2
+
 
 def is_within_bounds(position: Tuple[int, int], board_size: Tuple[int, int]) -> bool:
     x, y = position
     width, height = board_size
     return 0 <= x < width and 0 <= y < height
 
-def generate_food_position(snake: List[Tuple[int, int]], board_size: Tuple[int, int]) -> Tuple[int, int]:
+
+def generate_food_position(
+    snake: List[Tuple[int, int]], board_size: Tuple[int, int]
+) -> Tuple[int, int]:
     width, height = board_size
     empty_positions = [
-        (x, y) for x in range(width) for y in range(height)
-        if (x, y) not in snake
+        (x, y) for x in range(width) for y in range(height) if (x, y) not in snake
     ]
     return random.choice(empty_positions)
+
 
 def update_game_state(state: dict, direction: str) -> dict:
     if not state["snake"]:
@@ -50,19 +57,15 @@ def update_game_state(state: dict, direction: str) -> dict:
 
     new_snake_head = move_object(state["snake"][0], direction)
 
-
     if not is_within_bounds(new_snake_head, state["board_size"]):
         state["game_over"] = True
         return state
-
 
     if new_snake_head in state["snake"]:
         state["game_over"] = True
         return state
 
-
     state["snake"].insert(0, new_snake_head)
-
 
     if check_collision(new_snake_head, state["food"]):
         state["food"] = generate_food_position(state["snake"], state["board_size"])
@@ -77,6 +80,7 @@ def update_game_state(state: dict, direction: str) -> dict:
 
     return state
 
+
 def render_board(state: dict) -> List[List[str]]:
     width, height = state["board_size"]
     board = [["." for _ in range(width)] for _ in range(height)]
@@ -86,7 +90,6 @@ def render_board(state: dict) -> List[List[str]]:
 
     fx, fy = state["food"]
     board[fy][fx] = "*"
-
 
     for idx, (x, y) in enumerate(state["snake"]):
         if 0 <= x < width and 0 <= y < height:
