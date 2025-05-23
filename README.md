@@ -48,5 +48,5 @@ Zobaczysz, że workflow się uruchomił
 
 Sprawdź poszczególne kroki i logi
 
-📛 Badge statusu:
-Badge w README pokazuje aktualny stan pipeline:
+[📛 Badge statusu:
+Badge w README pokazuje aktualny stan pipeline:](https://github.com/PPY-2025/s30723-python-game/actions/workflows/ci.yml/badge.svg)
