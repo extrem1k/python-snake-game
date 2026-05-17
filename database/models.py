@@ -10,33 +10,21 @@ scores_collection = db["scores"]
 
 
 def create_user(nickname, score=0):
-    """
-    Tworzy nowego użytkownika.
-    """
     user_data = {"nickname": nickname, "score": score, "created_at": datetime.utcnow()}
     result = users_collection.insert_one(user_data)
     return result.inserted_id
 
 
 def get_user(user_id):
-    """
-    Pobiera użytkownika na podstawie _id.
-    """
     return users_collection.find_one({"_id": user_id})
 
 
 def update_user(user_id, update_fields: dict):
-    """
-    Aktualizuje dane użytkownika.
-    """
     result = users_collection.update_one({"_id": user_id}, {"$set": update_fields})
     return result.modified_count
 
 
 def delete_user(user_id):
-    """
-    Usuwa użytkownika.
-    """
     result = users_collection.delete_one({"_id": user_id})
     return result.deleted_count
 
@@ -45,9 +33,6 @@ def delete_user(user_id):
 
 
 def create_score(user_id, final_score, play_time):
-    """
-    Dodaje wynik gry.
-    """
     score_data = {
         "user_id": user_id,
         "final_score": final_score,
@@ -59,16 +44,10 @@ def create_score(user_id, final_score, play_time):
 
 
 def get_scores_by_user(user_id):
-    """
-    Pobiera wyniki gier dla danego użytkownika.
-    """
     return list(scores_collection.find({"user_id": user_id}))
 
 
 def update_score(score_id, update_fields: dict):
-    """
-    Aktualizuje wynik gry.
-    """
     result = scores_collection.update_one({"_id": score_id}, {"$set": update_fields})
     return result.modified_count
 
@@ -85,8 +64,5 @@ def save_score(user_id, board_size, score, nickname):
 
 
 def delete_score(score_id):
-    """
-    Usuwa dany wynik.
-    """
     result = scores_collection.delete_one({"_id": score_id})
     return result.deleted_count
