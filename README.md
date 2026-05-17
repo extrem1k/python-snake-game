@@ -9,15 +9,11 @@ pip install -r requirements.txt
 
 
 
-
-
 DEMO I PREZENTACJA JEST W REPOZYTORIUM. TRZEBA JE POBRAC
 
 
 
-
-
-🔧 Co wykonuje pipeline:
+ Co wykonuje pipeline:
 1. Instalacja środowiska
 Ustawia wersję Pythona (3.11)
 
@@ -43,7 +39,7 @@ Skanowanie kodu (bandit)
 5. Testy uruchamiania aplikacji
 Sprawdzenie czy moduły gry i API dają się zaimportować bez błędów
 
-🧪 Jak przetestować działanie pipeline?
+ Jak przetestować działanie pipeline?
 Wprowadź zmianę w pliku .py lub testowym
 
 Zrób git push do main lub pull_request
@@ -53,6 +49,3 @@ Wejdź w repozytorium na zakładkę Actions:
 Zobaczysz, że workflow się uruchomił
 
 Sprawdź poszczególne kroki i logi
-
-[📛 Badge statusu:
-Badge w README pokazuje aktualny stan pipeline:](https://github.com/PPY-2025/s30723-python-game/actions/workflows/ci.yml/badge.svg)
